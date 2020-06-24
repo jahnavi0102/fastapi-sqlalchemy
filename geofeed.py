@@ -2,7 +2,7 @@
 import json
 import sqlalchemy as al
 
-extentions_sql = "CREATE EXTENSION IF NOT EXISTS postgis;CREATE EXTENSION IF NOT EXISTS postgis_raster;"
+extentions_sql = "CREATE EXTENSION IF NOT EXISTS postgis;"
 polygon_sql = """
     CREATE TABLE IF NOT EXISTS geostore (
         id SERIAL PRIMARY KEY,

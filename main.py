@@ -5,8 +5,14 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 import json
+try:
+    DATABASE_URL = os.environ['DATABASE_URL']
+except KeyError as e:
+    # print(e)
+    print("Using static database URL")
+    DATABASE_URL = "postgres://bycyitptybvtsj:06fa85b8742c3ed4581993fcdbb6b33211e53a4271e884e11b21bb403e06a6b5@ec2-50-17-90-177.compute-1.amazonaws.com:5432/d7s3hiaijvira2"
 
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
 app = FastAPI()
 
@@ -96,7 +102,7 @@ def get_loc_dis(lat:float , long:float, radius:float = 5):
         SELECT (
         point(m.longitude, m.latitude)<@>point({0}, {1})
         ) * 1609.344 as distance, * FROM mapping m
-        ) as distances WHERE distance <= {2};""".format(long, lat, radius * 1000)
+        ) as distances WHERE distances.distance <= {2};""".format(long, lat, radius * 1000)
     
     print(query)
     result = connection.execute(query)

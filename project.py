@@ -56,11 +56,11 @@ with open("D:\\pincode-master\\data\\OUT.csv ", 'r') as f:
 
     for row in f:
         my_row = next(reader)
-        place_name = "'"+my_row[0]+"'"
-        admin_name1 = "'"+my_row[1]+"'"
+        place_name = my_row[0]
+        admin_name1 = my_row[1]
         latitude = my_row[2]
         longitude = my_row[3]
-        Country = "'"+my_row[4]+"'"
+        Country = my_row[4]
         pin = my_row[5]
         insert(place_name , admin_name1 , latitude , longitude , Country , pin)
 
