@@ -3,9 +3,10 @@ from pydantic import BaseModel
 from fastapi import FastAPI, Response
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 import json
 
-DATABASE_URL = "postgresql://postgres:jahnavi@localhost:5432/postgres"
+DATABASE_URL = os.environ['DATABASE_URL']
 
 app = FastAPI()
 

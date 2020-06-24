@@ -18,7 +18,7 @@ insert_query = """
             INSERT INTO geostore (location_name, location_type, location_parent, polygon) VALUES ('{0}', '{1}', '{2}', ST_GeometryFromText('SRID=4326;POLYGON(({3}))'));
             """
 
-DATABASE_URL = "postgresql://postgres:jahnavi@localhost:5432/postgres"
+DATABASE_URL = "postgres://bycyitptybvtsj:06fa85b8742c3ed4581993fcdbb6b33211e53a4271e884e11b21bb403e06a6b5@ec2-50-17-90-177.compute-1.amazonaws.com:5432/d7s3hiaijvira2"
 
 database = al.create_engine(
     DATABASE_URL
