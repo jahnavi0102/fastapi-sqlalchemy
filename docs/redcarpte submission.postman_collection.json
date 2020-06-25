@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "199f5fc7-5faa-48c2-8ca5-4e993f9ba8e0",
+		"name": "redcarpte submission",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Using Postgres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://subm-jahnavi-geo.herokuapp.com/get_using_postgres?lat=28.65&long=77.2167",
+					"protocol": "https",
+					"host": [
+						"subm-jahnavi-geo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"get_using_postgres"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "28.65"
+						},
+						{
+							"key": "long",
+							"value": "77.2167"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Self Calculation for Location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://subm-jahnavi-geo.herokuapp.com/get_using_self?lat=28.65&long=77.2167",
+					"protocol": "https",
+					"host": [
+						"subm-jahnavi-geo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"get_using_self"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "28.65"
+						},
+						{
+							"key": "long",
+							"value": "77.2167"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detec Point in Polygon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://subm-jahnavi-geo.herokuapp.com/detect?lat=28.630540&long=77.219847",
+					"protocol": "https",
+					"host": [
+						"subm-jahnavi-geo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"detect"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "28.630540"
+						},
+						{
+							"key": "long",
+							"value": "77.219847"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://subm-jahnavi-geo.herokuapp.com/get_location?lat=28.65&long=77.2167",
+					"protocol": "https",
+					"host": [
+						"subm-jahnavi-geo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"get_location"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "28.65"
+						},
+						{
+							"key": "long",
+							"value": "77.2167"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Location",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"place_name\": \"Address\",\r\n        \"admin_name1\": \"City\",\r\n        \"latitude\": 29.8543,\r\n        \"longitude\": 77.8880,\r\n        \"country\": \"IN\",\r\n        \"pin\": 999999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://subm-jahnavi-geo.herokuapp.com/post_location/",
+					"protocol": "https",
+					"host": [
+						"subm-jahnavi-geo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post_location",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

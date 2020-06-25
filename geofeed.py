@@ -1,6 +1,9 @@
-
+"""
+Script for storing geodata in Postgres table `geostore`
+"""
 import json
 import sqlalchemy as al
+import os
 
 extentions_sql = "CREATE EXTENSION IF NOT EXISTS postgis;"
 polygon_sql = """
@@ -18,7 +21,11 @@ insert_query = """
             INSERT INTO geostore (location_name, location_type, location_parent, polygon) VALUES ('{0}', '{1}', '{2}', ST_GeometryFromText('SRID=4326;POLYGON(({3}))'));
             """
 
-DATABASE_URL = "postgres://bycyitptybvtsj:06fa85b8742c3ed4581993fcdbb6b33211e53a4271e884e11b21bb403e06a6b5@ec2-50-17-90-177.compute-1.amazonaws.com:5432/d7s3hiaijvira2"
+try:
+    DATABASE_URL = os.environ['DATABASE_URL']
+except KeyError as e:
+    print("Using static database URL")
+    DATABASE_URL = "postgres://gudilbqulmwevs:f97336e5a36fddfd605e05845fc6b9e1d37efecb1d0103accf9c42a349210586@ec2-52-202-66-191.compute-1.amazonaws.com:5432/ddbg838br74koo"
 
 database = al.create_engine(
     DATABASE_URL
@@ -28,13 +35,16 @@ connection = database.connect()
 # run table creation and geometry indexing
 result = connection.execute(extentions_sql + ';' + polygon_sql + ';' + indexing_polygon_sql)
 
-file_name = "geodata.json"
+file_name = "data/geodata.json"
+
 with open(file_name) as json_file:
+
     content = json_file.read()
     json_data = json.loads(content)
     cities = json_data['features']
 
     for city in cities:
+
         city_properties = city['properties']
         city_geometry_details = city['geometry']
 
@@ -43,6 +53,7 @@ with open(file_name) as json_file:
         query_point_str = ''
         count = 0
         for point in polygon_boundaries:
+
             count += 1 
             query_point_str += str(point[0]) + ' ' + str(point[1]) # 1 is the latitude, 0 is the longitude
             if count < len(polygon_boundaries):
@@ -55,6 +66,7 @@ with open(file_name) as json_file:
         result = connection.execute(insert_copy)
         count = result.rowcount
         if count <= 0:
+
             not_found_resp = {"status": "not found"}
             print(not_found_resp)
 
